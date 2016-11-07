@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104060645) do
+ActiveRecord::Schema.define(version: 20161107170219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 20161104060645) do
     t.date     "departure_date"
     t.string   "departure_info"
     t.date     "visa_expiry_date"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.integer  "status",           default: 0
+    t.integer  "level",            default: 0
     t.index ["code"], name: "index_mehmen_on_code", unique: true, using: :btree
     t.index ["passport_no"], name: "index_mehmen_on_passport_no", unique: true, using: :btree
   end

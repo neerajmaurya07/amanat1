@@ -1,15 +1,12 @@
 class Mehman < ApplicationRecord
-	enum status: [:staying, :returned]
-	enum level: [:normal, :safe, :danger]
+  enum status: [:staying, :returned]
+  enum level: [:normal, :safe, :danger]
 
-	def level
-      if visa_expiry_date - arrival_date > 120
-      	Mehman.safe
-      elsif departure_date >= visa_expiry_date   
-      	Mehman.safe
-      elsif departure_date - visa_expiry_date < -3   
-      	Mehman.danger
-      else
-      	Mehman.normal
+  def self.search(search, id)
+    if search
+      where(['full_name LIKE ?', "%#{search}%"])
+    else
+      all
     end
+  end
 end

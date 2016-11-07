@@ -1,5 +1,10 @@
 <h1> Mehman List </h1>
 
+<%= form_tag mehmen_path, method: 'get' do %>
+  <%= text_field_tag :search, params[:search] %>
+  <%= submit_tag 'Search', full_name: nil %>
+<% end %>
+
 <div class="row">
   <div class="col-sm-12">
 	<table class="table table-bordered table-condensed table-striped">

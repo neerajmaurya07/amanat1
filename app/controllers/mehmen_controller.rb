@@ -3,7 +3,7 @@ class MehmenController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @mehmen = Mehman.staying.search(params[:search], params[:id])
+    @mehmen = Mehman.staying.search(params[:search])
   end
 
   def show

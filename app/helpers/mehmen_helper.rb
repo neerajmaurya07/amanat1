@@ -1,0 +1,2 @@
+module MehmenHelper
+end

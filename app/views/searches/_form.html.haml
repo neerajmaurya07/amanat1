@@ -1,0 +1,22 @@
+= simple_form_for @search, html: { multipart: true } do |f|
+  - if @search.errors.any?
+    %p
+      = @search.errors.count
+      Prevented this Search from saving
+    %ul
+      - @search.errors.full_messages.each do |msg|
+        %li= msg
+
+  .panel-body
+    = f.input :status, input_html: { class: 'form-control' }
+    = f.input :level, input_html: { class: 'form-control' }
+    = f.input :keywords, input_html: { class: 'form-control' }
+    = f.input :country, input_html: { class: 'form-control' }
+    = f.input :arrival_date_from, input_html: { class: 'form-control' }
+    = f.input :arrival_date_to, input_html: { class: 'form-control' }
+    = f.input :visa_expiry_date_from, input_html: { class: 'form-control' }
+    = f.input :visa_expiry_date_to, input_html: { class: 'form-control' }
+    
+                   
+  = f.button :submit, class: "btn btn-primary"
+  = link_to "Back", root_path, class: "btn btn-default"

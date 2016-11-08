@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108124925) do
+ActiveRecord::Schema.define(version: 20161108182537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(version: 20161108124925) do
     t.integer  "level",            default: 0
     t.index ["code"], name: "index_mehmen_on_code", unique: true, using: :btree
     t.index ["passport_no"], name: "index_mehmen_on_passport_no", unique: true, using: :btree
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.string   "keywords"
+    t.string   "country"
+    t.date     "arrival_date_from"
+    t.date     "arrival_date_to"
+    t.date     "visa_expiry_date_from"
+    t.date     "visa_expiry_date_to"
+    t.integer  "status"
+    t.integer  "level"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "users", force: :cascade do |t|

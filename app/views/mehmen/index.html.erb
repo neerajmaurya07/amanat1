@@ -1,38 +1,38 @@
-<h1> Mehman List </h1>
-
 <%= form_tag mehmen_path, method: 'get' do %>
   <%= text_field_tag :search, params[:search] %>
   <%= submit_tag 'Search', full_name: nil %>
 <% end %>
 
+<%= link_to "Advanced Search", new_search_path %>
+
 <div class="row">
   <div class="col-sm-12">
 	<table class="table table-bordered table-condensed table-striped">
 	  <tr class = "info">
+	    <th> Level </th>
 	    <th> Code </th>
 	    <th> Country </th>
 	    <th> Full Name </th>
 	    <th> Passport No </th>
-	    <th> Arrival Date </th>
-	    <th> Arrival Info </th>
+	    <th> Arrival Date </th>	    
 	    <th> Visa Expiry </th>
 	    <th> Departure Date </th>
+	    <th> Arrival Info </th>
 	    <th> Departure Info </th>
-	    <th> Level </th>
 	    <th> Action </th>
 	  </tr>
 	  <% @mehmen.each do |mehman| %>
 	  <tr class = "">
+	    <td> <i class="fa fa-plus-square"></i> <i class="fa fa-square"></i> <i class="fa fa-square-o"></i></td>
 	    <td> <%= mehman.code.upcase %> </td>
 	    <td> <%= mehman.country_name %> </td>
 	    <td> <%= mehman.full_name.titleize%> </td>
 	    <td> <%= mehman.passport_no.upcase %> </td>
 	    <td> <%= mehman.arrival_date.strftime('%d/%m/%Y') %> </td>
-	    <td> <%= mehman.arrival_info %> </td>
 	    <td> <%= mehman.visa_expiry_date.strftime('%d/%m/%Y') %> </td>
 	    <td> <%= mehman.departure_date.strftime('%d/%m/%Y') %> </td>
+	    <td> <%= mehman.arrival_info %> </td>
 	    <td> <%= mehman.departure_info %> </td>
-	    <td> <i class="fa fa-plus-square"></i> <i class="fa fa-square"></i> <i class="fa fa-square-o"></i></td>
 	    <td> <a href="<%= edit_mehman_path(mehman) %>"><i class="fa fa-pencil-square"></i></a></td>
 	  </tr>
 	  <% end %>

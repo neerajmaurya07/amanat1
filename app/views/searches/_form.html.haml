@@ -12,10 +12,10 @@
     = f.input :level, input_html: { class: 'form-control' }
     = f.input :keywords, input_html: { class: 'form-control' }
     = f.input :country, input_html: { class: 'form-control' }
-    = f.input :arrival_date_from, input_html: { class: 'form-control' }
-    = f.input :arrival_date_to, input_html: { class: 'form-control' }
-    = f.input :visa_expiry_date_from, input_html: { class: 'form-control' }
-    = f.input :visa_expiry_date_to, input_html: { class: 'form-control' }
+    = f.input :arrival_date_from, :include_blank => true, input_html: { class: 'form-control' }
+    = f.input :arrival_date_to, :include_blank => true, input_html: { class: 'form-control' }
+    = f.input :visa_expiry_date_from, :include_blank => true, input_html: { class: 'form-control' }
+    = f.input :visa_expiry_date_to, :include_blank => true, input_html: { class: 'form-control' }
     
                    
   = f.button :submit, class: "btn btn-primary"

@@ -1,8 +1,12 @@
 <h1> Search Results </h1>
 <%= link_to "Back", new_search_path %>
 
-<% if @search.search_mehmen.empty? %>
-  <h3> No Records Found </h3>
+<% if @search.mehmen.empty? %>
+  <div class="row">
+    <div class="col-sm-12">
+  	  <p> No Records Found </p>
+  	</div>
+  </div>
 <% else %>
   <div class="row">
     <div class="col-sm-12">
@@ -20,7 +24,7 @@
 	      <th> Departure Info </th>
 	      
 	    </tr>
-	    <% @search.search_mehmen.each do |s| %>
+	    <% @search.mehmen.each do |s| %>
 	    <tr class = "">
 	      <td> <i class="fa fa-plus-square"></i> <i class="fa fa-square"></i> <i class="fa fa-square-o"></i></td>
 	      <td> <%= s.code.upcase %> </td>

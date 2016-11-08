@@ -24,7 +24,7 @@
 	  <% @mehmen.each do |mehman| %>
 	  <tr class = "">
 	    <td> <%= mehman.code.upcase %> </td>
-	    <td> <%= mehman.country %> </td>
+	    <td> <%= mehman.country_name %> </td>
 	    <td> <%= mehman.full_name.titleize%> </td>
 	    <td> <%= mehman.passport_no.upcase %> </td>
 	    <td> <%= mehman.arrival_date.strftime('%d/%m/%Y') %> </td>

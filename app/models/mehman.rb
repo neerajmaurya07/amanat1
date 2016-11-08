@@ -9,4 +9,9 @@ class Mehman < ApplicationRecord
       all
     end
   end
+
+  def country_name
+    country = self.country
+    ISO3166::Country[country]
+  end
 end

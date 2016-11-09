@@ -21,6 +21,8 @@ class Mehman < ApplicationRecord
   def get_level
     if visa_expiry_date - arrival_date > 119
       level = 1
+    elsif departure_date == nil
+      level = 0
     elsif visa_expiry_date >= departure_date
       level = 1
     elsif visa_expiry_date < departure_date

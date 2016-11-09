@@ -41,6 +41,7 @@ class MehmenController < ApplicationController
 
   def return
     @mehman = @mehman.returned!
+    redirect_to root_path
   end
 
   def back

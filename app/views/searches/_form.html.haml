@@ -8,8 +8,8 @@
         %li= msg
 
   .panel-body
-    = f.input :status, collection: @statuses, input_html: { class: 'form-control' }
-    = f.input :level, collection: @levels, input_html: { class: 'form-control' }
+    = f.input :status, collection: @statuses, default: 0, input_html: { class: 'form-control' }
+    = f.input :level, collection: @levels, default: 0, input_html: { class: 'form-control' }
     = f.input :keywords, input_html: { class: 'form-control' }
     = f.input :country, collection: @countries, input_html: { class: 'form-control' }
     = f.input :arrival_date_from, :include_blank => true, input_html: { class: 'form-control' }

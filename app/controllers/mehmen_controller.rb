@@ -16,7 +16,7 @@ class MehmenController < ApplicationController
   def create
   	@mehman = Mehman.new(mehman_params)
 
-  	if @mehman.save
+    if @mehman.save
   	  redirect_to @mehman, notice: "Successfully created new mehman."
   	else
   	  render 'new'

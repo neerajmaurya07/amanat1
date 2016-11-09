@@ -23,7 +23,13 @@
 	  </tr>
 	  <% @mehmen.each do |mehman| %>
 	  <tr class = "">
-	    <td> <i class="fa fa-plus-square"></i> <i class="fa fa-square"></i> <i class="fa fa-square-o"></i></td>
+	  	<% if mehman.get_level == 1 %>
+	      <td> <i class="fa fa-heart-o"> </td>
+	    <% elsif mehman.get_level == 0 %>
+	      <td> <i class="fa fa-adjust"> </td>
+	    <% else %>
+	      <td> <i class="fa fa-bolt"> </td>
+	    <% end %>
 	    <td> <%= mehman.code.upcase %> </td>
 	    <td> <%= mehman.country_name %> </td>
 	    <td> <%= mehman.full_name.titleize%> </td>

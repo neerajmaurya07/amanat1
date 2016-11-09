@@ -2,7 +2,7 @@ class Mehman < ApplicationRecord
   enum status: [:staying, :returned]
   enum level: [:normal, :safe, :danger]
 
-  before_save :get_level
+  before_create :get_level
   before_update :get_level
 
   def self.search(search)
@@ -20,16 +20,17 @@ class Mehman < ApplicationRecord
 
   def get_level
     if visa_expiry_date - arrival_date > 119
-      level = 1
+      self.level = :safe
     elsif departure_date == nil
-      level = 0
+      self.level = :normal
     elsif visa_expiry_date >= departure_date
-      level = 1
+      self.level = :safe
     elsif visa_expiry_date < departure_date
-      level = 2
+      self.level = :danger
     else
-      level = 0
+      self.level = :normal
     end
+
   end
 
 end

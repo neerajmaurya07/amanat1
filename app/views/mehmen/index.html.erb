@@ -23,9 +23,9 @@
 	  </tr>
 	  <% @mehmen.each do |mehman| %>
 	  <tr class = "">
-	  	<% if mehman.get_level == 1 %>
+	  	<% if mehman.safe? %>
 	      <td> <i class="fa fa-heart-o"> </td>
-	    <% elsif mehman.get_level == 0 %>
+	    <% elsif mehman.normal? %>
 	      <td> <i class="fa fa-adjust"> </td>
 	    <% else %>
 	      <td> <i class="fa fa-bolt"> </td>

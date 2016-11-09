@@ -1,5 +1,5 @@
 class MehmenController < ApplicationController
-  before_action :find_mehman, only: [:show, :edit, :update, :destroy]
+  before_action :find_mehman, only: [:show, :edit, :update, :destroy, :return, :back]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
@@ -39,7 +39,15 @@ class MehmenController < ApplicationController
     redirect_to root_path, notice: "Successfully deleted the mehman"
   end
 
-  private
+  def return
+    @mehman = @mehman.returned!
+  end
+
+  def back
+    @mehman = @mehman.staying!
+  end
+
+private
 
   def find_mehman
   	@mehman = Mehman.find(params[:id])
@@ -47,7 +55,7 @@ class MehmenController < ApplicationController
 
   def mehman_params
   	params.require(:mehman).permit(:code, :full_name, :passport_no, :country, 
-  		:arrival_date, :arrival_info, :departure_date, :departure_info, :visa_expiry_date)
+  		:arrival_date, :arrival_info, :departure_date, :departure_info, :visa_expiry_date, :status, :level)
   end
 end
 

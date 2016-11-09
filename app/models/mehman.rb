@@ -2,7 +2,6 @@ class Mehman < ApplicationRecord
   enum status: [:staying, :returned]
   enum level: [:normal, :safe, :danger]
 
-  before_create :get_level
   before_save :get_level
   before_update :get_level
 
@@ -29,7 +28,6 @@ class Mehman < ApplicationRecord
     else
       level = 0
     end
-
   end
 
 end

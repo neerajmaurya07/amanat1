@@ -36,10 +36,12 @@
 	    <td> <%= mehman.passport_no.upcase %> </td>
 	    <td> <%= mehman.arrival_date.strftime('%d/%m/%Y') %> </td>
 	    <td> <%= mehman.visa_expiry_date.strftime('%d/%m/%Y') %> </td>
-	    <td> <%= mehman.departure_date.strftime('%d/%m/%Y') %> </td>
+	    <td> <%= mehman.departure_date.strftime('%d/%m/%Y') if mehman.departure_date.present? %> </td>
 	    <td> <%= mehman.arrival_info %> </td>
 	    <td> <%= mehman.departure_info %> </td>
-	    <td> <a href="<%= edit_mehman_path(mehman) %>"><i class="fa fa-pencil-square"></i></a></td>
+	    <td> <a href="<%= edit_mehman_path(mehman) %>"><i class="fa fa-pencil-square"></i></a>&nbsp;<%= link_to "ret", {:action => :return, :id =>mehman.id,  :controller => "mehmen"}, :method => :patch, :remote => true%>
+	    </td>
+
 	  </tr>
 	  <% end %>
 	</table>

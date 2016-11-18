@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :mehmen do
   	member do
-  	  patch :return
-  	  patch :back
+  	  get :return
+  	  get :back
   	end
   end
   

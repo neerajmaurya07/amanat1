@@ -17,7 +17,7 @@ class MehmenController < ApplicationController
   	@mehman = Mehman.new(mehman_params)
 
     if @mehman.save
-  	  redirect_to @mehman, notice: "Successfully created new mehman."
+  	  redirect_to @mehman, notice: "Successfully created new Mehman!"
   	else
   	  render 'new'
   	end
@@ -28,7 +28,7 @@ class MehmenController < ApplicationController
   
   def update
     if @mehman.update(mehman_params)
-      redirect_to @mehman, notice: "Successfully updated mehman."
+      redirect_to @mehman, notice: "Successfully updated Mehman!"
     else
       render 'edit'
     end
@@ -36,16 +36,17 @@ class MehmenController < ApplicationController
   
   def destroy
     @mehman.destroy
-    redirect_to root_path, notice: "Successfully deleted the mehman"
+    redirect_to root_path, notice: "Successfully deleted the Mehman!"
   end
 
   def return
     @mehman = @mehman.returned!
-    redirect_to root_path
+    redirect_to root_path, notice: "Successfully changed status to Returned!"
   end
 
   def back
     @mehman = @mehman.staying!
+    redirect_to root_path, notice: "Successfully changed status to Staying!"
   end
 
 private

@@ -21,6 +21,7 @@
 
 # Ignore rvm gemset config file
 .ruby-gemset
+.rvmrc
 
 # Ignore application configuration figaro
 /config/application.yml

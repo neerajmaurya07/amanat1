@@ -1,6 +1,6 @@
 class MehmenController < ApplicationController
-  before_action :find_mehman, only: [:show, :edit, :update, :destroy, :return, :back]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_mehman, only: [:show, :edit, :update, :destroy, :return, :back]
 
   def index
     @mehmen = Mehman.staying.search(params[:search])
@@ -17,7 +17,7 @@ class MehmenController < ApplicationController
   	@mehman = Mehman.new(mehman_params)
 
     if @mehman.save
-  	  redirect_to @mehman, notice: "Successfully created new Mehman!"
+  	  redirect_to @mehman, notice: 'Successfully created new Mehman!'
   	else
   	  render 'new'
   	end
@@ -25,40 +25,38 @@ class MehmenController < ApplicationController
 
   def edit
   end
-  
+
   def update
     if @mehman.update(mehman_params)
-      redirect_to @mehman, notice: "Successfully updated Mehman!"
+      redirect_to @mehman, notice: 'Successfully updated Mehman!'
     else
       render 'edit'
     end
   end
-  
+
   def destroy
     @mehman.destroy
-    redirect_to root_path, notice: "Successfully deleted the Mehman!"
+    redirect_to root_path, notice: 'Successfully deleted the Mehman!'
   end
 
   def return
     @mehman = @mehman.returned!
-    redirect_to root_path, notice: "Successfully changed status to Returned!"
+    redirect_to root_path, notice: 'Successfully changed status to Returned!'
   end
 
   def back
     @mehman = @mehman.staying!
-    redirect_to root_path, notice: "Successfully changed status to Staying!"
+    redirect_to root_path, notice: 'Successfully changed status to Staying!'
   end
 
-private
+  private
 
-  def find_mehman
-  	@mehman = Mehman.find(params[:id])
+  def set_mehman
+  	@mehman = Mehman.find_by(id: params[:id])
   end
 
   def mehman_params
-  	params.require(:mehman).permit(:code, :full_name, :passport_no, :country, 
-  		:arrival_date, :arrival_info, :departure_date, :departure_info, :visa_expiry_date, :status, :level)
+  	params.require(:mehman).permit(:type, :serial, :full_name, :passport_no, :country, :arrival_date, :arrival_info,
+                                   :departure_date, :departure_info, :visa_expiry_date, :status, :level)
   end
 end
-
-

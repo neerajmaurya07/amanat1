@@ -7,8 +7,15 @@
       - @mehman.errors.full_messages.each do |msg|
         %li= msg
 
-  .panel-body
-    = f.input :code, input_html: { class: 'form-control' }
+  .panel-body.col-md-5
+    = f.input :type,
+              collection: Mehman::TYPE,
+              as: :radio_buttons,
+              label_method: :last,
+              value_method: :first,
+              checked: 'A',
+              input_html: { class: 'form-control' }
+    = f.input :serial, input_html: { class: 'form-control' }
     = f.input :full_name, input_html: { class: 'form-control' }
     = f.input :passport_no, input_html: { class: 'form-control' }
     = f.input :country, input_html: { class: 'form-control' }
@@ -17,6 +24,6 @@
     = f.input :visa_expiry_date, as: :date_picker
     = f.input :departure_date, as: :date_picker, :include_blank => true
     = f.input :departure_info, input_html: { class: 'form-control' }
-                   
-  = f.button :submit, class: "btn btn-primary"
-  = link_to "Back", root_path, class: "btn btn-default"
+
+    = f.button :submit, class: 'btn btn-primary'
+    = link_to 'Back', root_path, class: 'btn btn-default'

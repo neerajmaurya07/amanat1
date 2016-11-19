@@ -15,7 +15,7 @@
               value_method: :first,
               checked: 'A',
               input_html: { class: 'form-control' }
-    = f.input :serial, input_html: { class: 'form-control' }
+    = f.input :serial, as: :integer, input_html: { class: 'form-control' }
     = f.input :full_name, input_html: { class: 'form-control' }
     = f.input :passport_no, input_html: { class: 'form-control' }
     = f.input :country, input_html: { class: 'form-control' }

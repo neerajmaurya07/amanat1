@@ -23,7 +23,7 @@ class Mehman < ApplicationRecord
 
   def code
     return unless category && serial
-    category[0].upper + serial.to_s
+    category[0].upcase + serial.to_s
   end
 
   private

@@ -20,7 +20,7 @@ class MehmenController < ApplicationController
   end
 
   def create
-  	@mehman = Mehman.new(mehman_params)
+  	@mehman = Mehman.new(mehman_params.merge(user: current_user))
 
     if @mehman.save
       set_session_data
@@ -34,7 +34,7 @@ class MehmenController < ApplicationController
   end
 
   def update
-    if @mehman.update(mehman_params)
+    if @mehman.update(mehman_params.merge(user: current_user))
       redirect_to :back, notice: 'Successfully updated Mehman!'
     else
       render 'edit'
@@ -47,12 +47,12 @@ class MehmenController < ApplicationController
   end
 
   def return
-    @mehman = @mehman.returned!
+    @mehman.update_attributes(user: current_user, status: :returned)
     redirect_to :back, notice: 'Successfully changed status to Returned!'
   end
 
   def back
-    @mehman = @mehman.staying!
+    @mehman.update_attributes(user: current_user, status: :staying)
     redirect_to :back, notice: 'Successfully changed status to Staying!'
   end
 

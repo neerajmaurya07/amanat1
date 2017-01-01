@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170101141730) do
+ActiveRecord::Schema.define(version: 20170101162639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +30,9 @@ ActiveRecord::Schema.define(version: 20170101141730) do
     t.integer  "level"
     t.string   "category",         default: "english"
     t.integer  "serial"
+    t.integer  "user_id"
     t.index ["passport_no"], name: "index_mehmen_on_passport_no", unique: true, using: :btree
+    t.index ["user_id"], name: "index_mehmen_on_user_id", using: :btree
   end
 
   create_table "searches", force: :cascade do |t|
@@ -63,4 +65,5 @@ ActiveRecord::Schema.define(version: 20170101141730) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "mehmen", "users"
 end

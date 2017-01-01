@@ -6,6 +6,11 @@ class MehmenController < ApplicationController
     @mehmen = Mehman.staying.search(params[:search])
   end
 
+  def returned
+    @mehmen = Mehman.returned.search(params[:search])
+    render :index
+  end
+
   def show
   end
 
@@ -38,17 +43,17 @@ class MehmenController < ApplicationController
 
   def destroy
     @mehman.destroy
-    redirect_to root_path, notice: 'Successfully deleted the Mehman!'
+    redirect_to :back, notice: 'Successfully deleted the Mehman!'
   end
 
   def return
     @mehman = @mehman.returned!
-    redirect_to root_path, notice: 'Successfully changed status to Returned!'
+    redirect_to :back, notice: 'Successfully changed status to Returned!'
   end
 
   def back
     @mehman = @mehman.staying!
-    redirect_to root_path, notice: 'Successfully changed status to Staying!'
+    redirect_to :back, notice: 'Successfully changed status to Staying!'
   end
 
   private

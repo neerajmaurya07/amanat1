@@ -1,0 +1,45 @@
+= form_tag mehmen_path, method: 'get' do
+  = text_field_tag :search, params[:search]
+  = submit_tag 'Search', full_name: nil
+
+= link_to 'Advanced Search', new_search_path
+
+.row
+  .col-sm-12
+    %table.table.table-bordered.table-condensed.table-striped
+      %tr.info
+        %th Level
+        %th Code
+        %th Country
+        %th Full Name
+        %th Passport No
+        %th Arrival Date
+        %th Visa Expiry
+        %th Departure Date
+        %th Action
+
+      - @mehmen.each do |mehman|
+        %tr
+          %td
+            - if mehman.safe?
+              %i.fa.fa-heart-o
+            - elsif mehman.normal?
+              %i.fa.fa-adjust
+            - else
+              %i.fa.fa-bolt
+          %td= mehman.code.try(:upcase)
+          %td= mehman.country_name
+          %td= mehman.full_name.try(:titleize)
+          %td= mehman.passport_no.try(:upcase)
+          %td= mehman.arrival_date.strftime('%d/%m/%Y')
+          %td= mehman.visa_expiry_date.strftime('%d/%m/%Y')
+          %td= mehman.departure_date.try(:strftime, '%d/%m/%Y')
+          %td
+            = link_to edit_mehman_path(mehman) do
+              %i.fa.fa-pencil-square
+            - if action_name == 'returned'
+              = link_to back_mehman_path(mehman) do
+                %i.fa.fa-undo
+            - else
+              = link_to return_mehman_path(mehman) do
+                %i.fa.fa-share

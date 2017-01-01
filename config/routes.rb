@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :mehmen do
-  	member do
+    collection do
+      get :returned
+    end
+
+    member do
   	  get :return
   	  get :back
-  	end
+    end
   end
   
   resources :searches

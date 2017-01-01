@@ -3,7 +3,7 @@
   <%= submit_tag 'Search', full_name: nil %>
 <% end %>
 
-<%= link_to "Advanced Search", new_search_path %>
+<%= link_to 'Advanced Search', new_search_path %>
 
 <div class="row">
   <div class="col-sm-12">
@@ -17,33 +17,27 @@
 	    <th> Arrival Date </th>	    
 	    <th> Visa Expiry </th>
 	    <th> Departure Date </th>
-	    <th> Arrival Info </th>
-	    <th> Departure Info </th>
 	    <th> Action </th>
 	  </tr>
 	  <% @mehmen.each do |mehman| %>
 	  <tr class = "">
 	  	<% if mehman.safe? %>
-	      <td> <i class="fa fa-heart-o"> </td>
+	      <td> <i class="fa fa-heart-o"></i> </td>
 	    <% elsif mehman.normal? %>
-	      <td> <i class="fa fa-adjust"> </td>
+	      <td> <i class="fa fa-adjust"></i> </td>
 	    <% else %>
-	      <td> <i class="fa fa-bolt"> </td>
+	      <td> <i class="fa fa-bolt"></i> </td>
 	    <% end %>
-	    <td> <%= mehman.code.upcase %> </td>
+	    <td> <%= mehman.code.try(:upcase) %> </td>
 	    <td> <%= mehman.country_name %> </td>
-	    <td> <%= mehman.full_name.titleize%> </td>
-	    <td> <%= mehman.passport_no.upcase %> </td>
+	    <td> <%= mehman.full_name.try(:titleize) %> </td>
+	    <td> <%= mehman.passport_no.try(:upcase) %> </td>
 	    <td> <%= mehman.arrival_date.strftime('%d/%m/%Y') %> </td>
 	    <td> <%= mehman.visa_expiry_date.strftime('%d/%m/%Y') %> </td>
 	    <td> <%= mehman.departure_date.strftime('%d/%m/%Y') if mehman.departure_date.present? %> </td>
-	    <td> <%= mehman.arrival_info %> </td>
-	    <td> <%= mehman.departure_info %> </td>
 	    <td> <a href="<%= edit_mehman_path(mehman) %>"><i class="fa fa-pencil-square"></i></a>&nbsp; <a href="<%= return_mehman_path(mehman) %>"><i class="fa fa-share"></i></a><%#= {:action => :return, :id =>mehman.id,  :controller => "mehmen"}, :method => :patch, :remote => true %></td>
-
 	  </tr>
 	  <% end %>
 	</table>
   </div>
 </div>
-          

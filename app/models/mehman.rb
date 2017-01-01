@@ -1,12 +1,13 @@
 class Mehman < ApplicationRecord
-  TYPE = [%w(A Arabic), %w(E English), %w(U Urdu), %w(B Bangle)]
+  CATEGORY = %w(arabic english urdu bangle)
 
   enum status: [:staying, :returned]
   enum level: [:normal, :safe, :danger]
 
-  attr_accessor :type, :serial
+  before_save :set_level
 
-  before_save :set_level, :set_code
+  validates :category, :serial, :passport_no, :full_name, presence: true
+  validates_uniqueness_of :serial, scope: :category
 
   def self.search(search)
     if search
@@ -20,12 +21,12 @@ class Mehman < ApplicationRecord
     ISO3166::Country[country]
   end
 
-  private
-
-  def set_code
-    return unless type && serial
-    self.code = type + serial.to_s
+  def code
+    return unless category && serial
+    category[0].upper + serial.to_s
   end
+
+  private
 
   def set_level
     if visa_expiry_date - arrival_date > 119

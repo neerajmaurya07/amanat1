@@ -11,13 +11,15 @@ class MehmenController < ApplicationController
 
   def new
   	@mehman = Mehman.new
+    get_session_data
   end
 
   def create
   	@mehman = Mehman.new(mehman_params)
 
     if @mehman.save
-  	  redirect_to @mehman, notice: 'Successfully created new Mehman!'
+      set_session_data
+      redirect_to new_mehman_path, notice: 'Successfully created new Mehman!'
   	else
   	  render 'new'
   	end
@@ -56,7 +58,23 @@ class MehmenController < ApplicationController
   end
 
   def mehman_params
-  	params.require(:mehman).permit(:type, :serial, :full_name, :passport_no, :country, :arrival_date, :arrival_info,
-                                   :departure_date, :departure_info, :visa_expiry_date, :status, :level)
+  	params.require(:mehman).permit(:category, :serial, :full_name, :passport_no, :country, :arrival_date,
+                                   :departure_date, :visa_expiry_date, :status, :level)
+  end
+
+  def set_session_data
+    session[:mehman] = {} unless session[:mehman]
+    session[:mehman]['category'] = @mehman.category
+    session[:mehman]['serial'] = @mehman.serial
+    session[:mehman]['country'] = @mehman.country
+    session[:mehman]['arrival_date'] = @mehman.arrival_date
+  end
+
+  def get_session_data
+    return unless session[:mehman]
+    @mehman.category = session[:mehman]['category']
+    @mehman.serial = session[:mehman]['serial'].to_i + 1 rescue nil
+    @mehman.country = session[:mehman]['country']
+    @mehman.arrival_date = session[:mehman]['arrival_date']
   end
 end

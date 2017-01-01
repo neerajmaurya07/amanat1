@@ -19,7 +19,7 @@ class MehmenController < ApplicationController
 
     if @mehman.save
       set_session_data
-      redirect_to new_mehman_path, notice: 'Successfully created new Mehman!'
+      redirect_to :back, notice: 'Successfully created new Mehman!'
   	else
   	  render 'new'
   	end
@@ -30,7 +30,7 @@ class MehmenController < ApplicationController
 
   def update
     if @mehman.update(mehman_params)
-      redirect_to @mehman, notice: 'Successfully updated Mehman!'
+      redirect_to :back, notice: 'Successfully updated Mehman!'
     else
       render 'edit'
     end

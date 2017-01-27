@@ -3,7 +3,8 @@ class MehmenController < ApplicationController
   before_action :set_mehman, only: [:show, :edit, :update, :destroy, :return, :back]
 
   def index
-    @mehmen = Mehman.staying.search(params[:search])
+    @q = Mehman.staying.ransack(params[:q])
+    @mehmen = @q.result(distinct: true)
   end
 
   def returned

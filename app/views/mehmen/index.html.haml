@@ -1,8 +1,7 @@
-= form_tag mehmen_path, method: 'get' do
-  = text_field_tag :search, params[:search]
-  = submit_tag 'Search', full_name: nil
-
-= link_to 'Advanced Search', new_search_path
+.pull-right
+  = search_form_for @q do |f|
+    = f.search_field :full_name_or_passport_no_cont, placeholder: "Search..."
+    = f.submit
 
 .row
   .col-sm-12

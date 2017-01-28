@@ -35,7 +35,7 @@
           %td= mehman.departure_date.try(:strftime, '%d/%m/%Y')
           %td
             = link_to edit_mehman_path(mehman) do
-              %i.fa.fa-pencil-square
+              %i.fa.fa-pencil-square-o
             - if action_name == 'returned'
               = link_to back_mehman_path(mehman) do
                 %i.fa.fa-undo

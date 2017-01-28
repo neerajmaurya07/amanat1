@@ -8,12 +8,7 @@
         %li= msg
 
   .panel-body.col-md-5
-    = f.input :category,
-              collection: Mehman::CATEGORY,
-              as: :radio_buttons,
-              label_method: :capitalize,
-              input_html: { class: 'form-control' }
-    = f.input :serial, as: :integer, input_html: { class: 'form-control' }
+    = f.input :code, input_html: { class: 'form-control' }
     = f.input :full_name, input_html: { class: 'form-control' }
     = f.input :passport_no, input_html: { class: 'form-control' }
     = f.input :country, input_html: { class: 'form-control' }

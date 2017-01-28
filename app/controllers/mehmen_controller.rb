@@ -3,12 +3,15 @@ class MehmenController < ApplicationController
   before_action :set_mehman, only: [:show, :edit, :update, :destroy, :return, :back]
 
   def index
-    @q = Mehman.staying.ransack(params[:q])
+    @staying = Mehman.staying
+    @q = @staying.ransack(params[:q])
     @mehmen = @q.result(distinct: true)
   end
 
   def returned
-    @mehmen = Mehman.returned.search(params[:search])
+    @returned = Mehman.returned
+    @q = @returned.ransack(params[:q])
+    @mehmen = @q.result(distinct: true)
     render :index
   end
 
@@ -64,22 +67,18 @@ class MehmenController < ApplicationController
   end
 
   def mehman_params
-  	params.require(:mehman).permit(:category, :serial, :full_name, :passport_no, :country, :arrival_date,
+  	params.require(:mehman).permit(:code, :full_name, :passport_no, :country, :arrival_date,
                                    :departure_date, :visa_expiry_date, :status, :level)
   end
 
   def set_session_data
     session[:mehman] = {} unless session[:mehman]
-    session[:mehman]['category'] = @mehman.category
-    session[:mehman]['serial'] = @mehman.serial
     session[:mehman]['country'] = @mehman.country
     session[:mehman]['arrival_date'] = @mehman.arrival_date
   end
 
   def get_session_data
     return unless session[:mehman]
-    @mehman.category = session[:mehman]['category']
-    @mehman.serial = session[:mehman]['serial'].to_i + 1 rescue nil
     @mehman.country = session[:mehman]['country']
     @mehman.arrival_date = session[:mehman]['arrival_date']
   end

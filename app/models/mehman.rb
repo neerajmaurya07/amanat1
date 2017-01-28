@@ -8,24 +8,13 @@ class Mehman < ApplicationRecord
 
   before_save :set_level
 
-  validates :category, :serial, :passport_no, :full_name, presence: true
-  validates_uniqueness_of :serial, scope: :category
-
-  def self.search(search)
-    if search
-      where('code LIKE ? OR country LIKE ? OR full_name LIKE ? OR passport_no LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
-    else
-      all
-    end
-  end
+  validates :code, length: { in: 2..8 }, presence: true 
+  validates :passport_no, :full_name, :country, :arrival_date, :visa_expiry_date, presence: true
+  validates_uniqueness_of :code, case_sensitive: false
+  validates_uniqueness_of :passport_no, case_sensitive: false
 
   def country_name
     ISO3166::Country[country]
-  end
-
-  def code
-    return unless category && serial
-    category[0].upcase + serial.to_s
   end
 
   private

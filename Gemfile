@@ -57,6 +57,8 @@ gem 'font-awesome-sass'
 gem 'country_select', '~> 2.5', '>= 2.5.2'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 gem 'ransack', '~> 1.8', '>= 1.8.2'
+gem 'will_paginate', '~> 3.1', '>= 3.1.5'
+gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.1'
 
 # Dependency Ref
 gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'

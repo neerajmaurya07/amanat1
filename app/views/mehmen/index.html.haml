@@ -1,9 +1,14 @@
-.pull-right
-  = search_form_for @q do |f|
-    .field
-      = f.search_field :full_name_or_passport_no_cont, placeholder: "Name or Passport..."
-      = f.search_field :code_start, placeholder: "Code..."
-      = f.submit
+.div
+  .col-sm-6
+    .pull-left
+      %h2 Mehman Staying
+  .col-sm-6
+    .pull-right
+      = search_form_for @q do |f|
+        .field
+          = f.search_field :full_name_or_passport_no_cont, placeholder: "Name or Passport..."
+          = f.search_field :code_start, placeholder: "Code..."
+          = f.submit
 
 .row
   .col-sm-12
@@ -44,3 +49,7 @@
             - else
               = link_to return_mehman_path(mehman) do
                 %i.fa.fa-share
+.row
+  .col-sm-12
+    .pull-left
+      = will_paginate @mehmen, renderer: BootstrapPagination::Rails

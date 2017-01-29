@@ -4,16 +4,8 @@ class MehmenController < ApplicationController
 
 
   def index
-    @staying = Mehman.staying
-    @q = @staying.ransack(params[:q])
-    @mehmen = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 3)
-  end
-
-  def returned
-    @returned = Mehman.returned
-    @q = @returned.ransack(params[:q])
-    @mehmen = @q.result(distinct: true)
-    #render :index
+    @q = Mehman.ransack(params[:q])
+    @mehmen = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 30)
   end
 
   def show

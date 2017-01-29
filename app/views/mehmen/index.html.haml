@@ -1,7 +1,7 @@
 .div
   .col-sm-6
     .pull-left
-      %h2 Mehman Staying
+      %h2 Mehman List
   .col-sm-6
     .pull-right
       = search_form_for @q do |f|
@@ -43,7 +43,7 @@
           %td
             = link_to edit_mehman_path(mehman) do
               %i.fa.fa-pencil-square-o
-            - if action_name == 'returned'
+            - if mehman.status == 'returned'
               = link_to back_mehman_path(mehman) do
                 %i.fa.fa-undo
             - else

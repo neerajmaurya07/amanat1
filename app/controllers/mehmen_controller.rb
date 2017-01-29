@@ -2,6 +2,7 @@ class MehmenController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_mehman, only: [:show, :edit, :update, :destroy, :return, :back]
 
+
   def index
     @staying = Mehman.staying
     @q = @staying.ransack(params[:q])
@@ -12,7 +13,7 @@ class MehmenController < ApplicationController
     @returned = Mehman.returned
     @q = @returned.ransack(params[:q])
     @mehmen = @q.result(distinct: true)
-    render :index
+    render :returned
   end
 
   def show

@@ -12,19 +12,25 @@ class Mehman < ApplicationRecord
   validates :passport_no, :full_name, :country, :arrival_date, :visa_expiry_date, presence: true
   validates_uniqueness_of :code, case_sensitive: false
   validates_uniqueness_of :passport_no, case_sensitive: false
+  
   validate :visa_expiry_date_cannot_be_in_the_past
+  validate :visa_expiry_date_must_be_greater_than_arrival_date
 
   def country_name
     ISO3166::Country[country]
   end
-
-
 
   def visa_expiry_date_cannot_be_in_the_past
     if visa_expiry_date.present? && visa_expiry_date < Date.today
       errors.add(:visa_expiry_date, "can't be in the past")
     end
   end 
+
+  def visa_expiry_date_must_be_greater_than_arrival_date
+    if visa_expiry_date <= arrival_date
+      errors.add(:visa_expiry_date, "must be greater than arrival date ")
+    end
+  end
 
   private
 

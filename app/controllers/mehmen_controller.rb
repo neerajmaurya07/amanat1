@@ -13,7 +13,7 @@ class MehmenController < ApplicationController
     @returned = Mehman.returned
     @q = @returned.ransack(params[:q])
     @mehmen = @q.result(distinct: true)
-    render :returned
+    render :index
   end
 
   def show

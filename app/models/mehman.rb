@@ -20,6 +20,8 @@ class Mehman < ApplicationRecord
     ISO3166::Country[country]
   end
 
+  # VALIDATION 
+  
   def visa_expiry_date_cannot_be_in_the_past
     if visa_expiry_date.present? && visa_expiry_date < Date.today
       errors.add(:visa_expiry_date, "can't be in the past")
@@ -31,6 +33,8 @@ class Mehman < ApplicationRecord
       errors.add(:visa_expiry_date, "must be greater than arrival date ")
     end
   end
+
+  ###
 
   private
 

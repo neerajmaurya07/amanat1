@@ -1,20 +1,22 @@
 .pull-right
   = search_form_for @q do |f|
-    = f.search_field :full_name_or_passport_no_cont, placeholder: "Search..."
-    = f.submit
+    .field
+      = f.search_field :full_name_or_passport_no_cont, placeholder: "Name or Passport..."
+      = f.search_field :code_start, placeholder: "Code..."
+      = f.submit
 
 .row
   .col-sm-12
     %table.table.table-bordered.table-condensed.table-striped
       %tr.info
-        %th Level
-        %th Code
-        %th Country
-        %th Full Name
-        %th Passport No
-        %th Arrival Date
-        %th Visa Expiry
-        %th Departure Date
+        %th= sort_link @q, :level, "Level"
+        %th= sort_link @q, :code, "Code"
+        %th= sort_link @q, :country_name, "Country"
+        %th= sort_link @q, :full_name, "Full Name"
+        %th= sort_link @q, :passport_no, "Passport No"
+        %th= sort_link @q, :arrival_date, "Arrival Date"
+        %th= sort_link @q, :visa_expiry_date, "Visa Expiry"
+        %th= sort_link @q, :departure_date, "Departure Date"
         %th Action
 
       - @mehmen.each do |mehman|

@@ -6,7 +6,7 @@
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
 %body
-  = render partial: 'layouts/nab'
+  = render partial: 'layouts/nav'
   .container
     - flash.each do |name, msg|
       = content_tag :div, msg, class: "alert"

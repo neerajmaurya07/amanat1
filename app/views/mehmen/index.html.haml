@@ -1,15 +1,18 @@
-.div
-  .col-sm-6
-    .pull-left
-      %h2 Mehman List
-  .col-sm-6
+.row
+  .col-sm-12
     .pull-right
       = search_form_for @q do |f|
         .field
+          = f.label :status_eq, "Status"
+          = f.select :status_eq, Mehman.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {include_blank: true}
+          = f.label :level_eq, "Level"   
+          = f.select :level_eq, Mehman.levels.to_a.map { |w| [w[0].humanize, w[1]] }, {include_blank: true}
+          = f.label :full_name_or_passport_no_cont, "Name or Passport"
           = f.search_field :full_name_or_passport_no_cont, placeholder: "Name or Passport..."
+          = f.label :code_start, "Code"
           = f.search_field :code_start, placeholder: "Code..."
-          = f.submit
 
+          = f.submit
 .row
   .col-sm-12
     %table.table.table-bordered.table-condensed.table-striped

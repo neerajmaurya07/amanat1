@@ -5,7 +5,7 @@ class MehmenController < ApplicationController
 
   def index
     @q = Mehman.ransack(params[:q])
-    @mehmen = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 30)
+    @mehmen = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 50)
   end
 
   def show

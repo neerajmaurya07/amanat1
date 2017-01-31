@@ -4,7 +4,7 @@
       = search_form_for @q do |f|
         .field
           = f.label :status_eq, "Status"
-          = f.select :status_eq, Mehman.statuses.to_a.map { |w| [w[0].humanize, w[1]] }, {include_blank: true}
+          = f.select :status_eq, Mehman.statuses.to_a.map { |w| [w[0].humanize, w[1]] }
           = f.label :level_eq, "Level"   
           = f.select :level_eq, Mehman.levels.to_a.map { |w| [w[0].humanize, w[1]] }, {include_blank: true}
           = f.label :full_name_or_passport_no_cont, "Name or Passport"

@@ -50,8 +50,19 @@
               = link_to back_mehman_path(mehman) do
                 %i.fa.fa-undo
             - else
+              - if visa.status(mehman) == 'confirmed'
+                = link_to new_mehman_visa_path(mehman) do
+                  %i.fa.fa-check-square
+              - elsif visa.status(mehman) == 'applied'
+                = link_to new_mehman_visa_path(mehman) do
+                  %i.fa.fa-id-card
+              - else 
+                = link_to new_mehman_visa_path(mehman) do
+                  %i.fa.fa-id-card-o
+                
               = link_to return_mehman_path(mehman) do
                 %i.fa.fa-share
+              
 .row
   .col-sm-12
     .pull-left

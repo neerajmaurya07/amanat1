@@ -1,8 +1,6 @@
 class Mehman < ApplicationRecord
-  CATEGORY = %w(arabic english urdu bangle)
-
-  belongs_to :user
-
+  has_many :visas
+  
   enum status: [:staying, :returned]
   enum level: [:normal, :safe, :danger]
 

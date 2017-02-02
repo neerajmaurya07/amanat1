@@ -12,6 +12,7 @@ class VisasController < ApplicationController
   end
 
   def new
+    @mehman = Mehman.find_by(id: params[:mehman_id])
   	@visa = Visa.new
   end
 

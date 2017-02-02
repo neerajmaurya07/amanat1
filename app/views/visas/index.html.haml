@@ -4,9 +4,7 @@
       = search_form_for @q do |f|
         .field
           = f.label :status_eq, "Status"
-          = f.select :status_eq, Mehman.statuses.to_a.map { |w| [w[0].humanize, w[1]] }
-          = f.label :level_eq, "Level"   
-          = f.select :level_eq, Mehman.levels.to_a.map { |w| [w[0].humanize, w[1]] }, {include_blank: true}
+          = f.select :status_eq, Visa.statuses.to_a.map { |w| [w[0].humanize, w[1]] }
           = f.label :full_name_or_passport_no_cont, "Name or Passport"
           = f.search_field :full_name_or_passport_no_cont, placeholder: "Name or Passport..."
           = f.label :code_start, "Code"
@@ -17,33 +15,25 @@
   .col-sm-12
     %table.table.table-bordered.table-condensed.table-striped
       %tr.info
-        %th= sort_link @q, :level, "Level"
+        %th= sort_link @q, :status, "Status"
         %th= sort_link @q, :code, "Code"
-        %th= sort_link @q, :country_name, "Country"
         %th= sort_link @q, :full_name, "Full Name"
         %th= sort_link @q, :passport_no, "Passport No"
-        %th= sort_link @q, :arrival_date, "Arrival Date"
-        %th= sort_link @q, :visa_expiry_date, "Visa Expiry"
-        %th= sort_link @q, :departure_date, "Departure Date"
+        %th= sort_link @q, :file_no, "File No"
+        %th= sort_link @q, :submission_date, "Submission Date"
+        %th= sort_link @q, :apply_date, "Apply Date"
         %th Action
 
-      - @mehmen.each do |mehman|
+      - @visas.each do |visa|
         %tr
           %td
-            - if mehman.safe?
-              %i.fa.fa-heart-o
-            - elsif mehman.normal?
-              %i.fa.fa-adjust
-            - else
-              %i.fa.fa-bolt
-            
-            - if mehman.visa.try(:confirmed?)
+              
+            - if visa.try(:confirmed?)
               %i.fa.fa-check-square
-            - elsif mehman.visa.try(:applied?)
+            - else
               %i.fa.fa-id-card-o
 
-          %td= mehman.code.try(:upcase)
-          %td= mehman.country_name
+          %td= @mehman.visa.code.try(:upcase)
           %td= mehman.full_name.try(:titleize)
           %td= mehman.passport_no.try(:upcase)
           %td= mehman.arrival_date.strftime('%d/%m/%Y')

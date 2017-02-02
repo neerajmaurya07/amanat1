@@ -1,5 +1,5 @@
 class Mehman < ApplicationRecord
-  has_many :visas
+  has_one :visa
   
   enum status: [:staying, :returned]
   enum level: [:normal, :safe, :danger]

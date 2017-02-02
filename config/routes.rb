@@ -19,9 +19,8 @@ Rails.application.routes.draw do
       get :return
       get :back
     end
-    resources :visas
-    
   end
+  resources :visas
   
   root 'mehmen#index'
 
